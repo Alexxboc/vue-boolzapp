@@ -123,25 +123,12 @@
                        <!-- /#app_main_header -->
 
                        <div class="chat_area">
-                            <div class="inbox_messages">
-                                <div class="message_box" v-for="(message, index) in contacts.messages">
-                                   
+                            
+                                <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
+                                   {{message.message}}
                                 </div>
                                 <!-- /.message_box -->
-                            </div>
-                            <!-- /.inbox_messages -->
-                            <div class="sent_messages">
-                                <div class="message_box">
-                                    Tutto Fatto!
-                                </div>
-                                <!-- /.message_box -->
-                                <div class="message_box">
-                                    Tutto Fatto!
-                                </div>
-                                <!-- /.message_box -->
-
-                            </div>
-                            <!-- /.sent_messages -->
+                            
                        </div>
                        <!-- /.chat_area -->
 

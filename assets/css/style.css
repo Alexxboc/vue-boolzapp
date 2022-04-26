@@ -144,6 +144,11 @@ img {
     padding-left: 0.5rem
 }
 
+#aside_main {
+    overflow: auto;
+    max-height: 700px;
+}
+
 #aside_main .user_wrapper {
     display: flex;
     justify-content: space-between;
@@ -193,25 +198,15 @@ img {
     text-align: center;
 }
 
+
 .chat_area {
-    display: flex;
-}
-.chat_area .inbox_messages, .chat_area .sent_messages {
-    width: 50%;
+    width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
     flex-direction: column;
     row-gap: 1rem;
+    padding: 5rem;
 
-}
-
-.chat_area .sent_messages {
-    margin-top: 5rem;
-}
-
-.chat_area .inbox_messages {
-    margin-top: 13rem;
 }
 
 .chat_area .message_box {
@@ -223,12 +218,14 @@ img {
     padding: 1rem;
 }
 
-.inbox_messages .message_box {
+.inbox_message {
     background-color: white;
+    align-self: start;
 }
 
- .sent_messages .message_box {
-   background-color: var(--message-box-green)
+ .sent_message {
+   background-color: var(--message-box-green);
+   align-self: flex-end;
 }
 
 .active {

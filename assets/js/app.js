@@ -185,7 +185,7 @@ const app = new Vue ({
        changeChat(index) {
         // console.log('change chat');
         this.activeUser = index;
-       }
+       },
 
    },
 })
