@@ -64,15 +64,15 @@
                     </div>
                     <!-- /.search -->
                     <main id="aside_main">
-                        <div class="user_wrapper">
+                        <div class="user_wrapper" v-for="(contact, index) in contacts" @click="changeChat(index)" :class="activeUser === index ? 'active' : ''">
                             <div class="user">
                                 <div class="user_img">
-                                    <img src="./assets/img/avatar_1.jpg" alt="">
+                                    <img :src="contact.avatar" alt="">
                                 </div>
                                 <!-- /.user_img -->
                                 <div class="user_details">
                                     <div class="user_name">
-                                        Michele
+                                        {{contact.name}}
                                     </div>
                                     <!-- /.user_name -->
                                     <small class="last_message_info">
@@ -88,173 +88,7 @@
                         </div>
                         <!-- /.user_wrapper -->
 
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_2.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
-
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_3.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
-
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_4.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
-
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_5.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
-
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_6.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
-
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_7.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
-
-                        <div class="user_wrapper">
-                            <div class="user">
-                                <div class="user_img">
-                                    <img src="./assets/img/avatar_8.jpg" alt="">
-                                </div>
-                                <!-- /.user_img -->
-                                <div class="user_details">
-                                    <div class="user_name">
-                                        Michele
-                                    </div>
-                                    <!-- /.user_name -->
-                                    <small class="last_message_info">
-                                        Ultimo messaggio inviato
-                                    </small>
-                                    <!-- /.last_message_info -->
-                                </div>
-                                <!-- /.user_details -->
-                            </div>
-                            <!-- /.user -->
-                            <small class="time">12:00</small>
-                            <!-- /.time -->
-                        </div>
-                        <!-- /.user_wrapper -->
+          
                     </main>
                     <!-- /#aside_main -->
                    </aside>

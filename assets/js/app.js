@@ -14,10 +14,12 @@ Click sul contatto mostra la conversazione del contatto cliccato
 const app = new Vue ({
    el: '#app',
    data: {
+    activeUser: 0,
+
     contacts: [
         {
             name: 'Michele',
-            avatar: '_1',
+            avatar: './assets/img/avatar_1.jpg',
             visible: true,
             messages: [
                 {
@@ -39,7 +41,7 @@ const app = new Vue ({
         },
         {
             name: 'Fabio',
-            avatar: '_2',
+            avatar: './assets/img/avatar_2.jpg',
             visible: true,
             messages: [
                 {
@@ -61,7 +63,7 @@ const app = new Vue ({
         },
         {
             name: 'Samuele',
-            avatar: '_3',
+            avatar: './assets/img/avatar_3.jpg',
             visible: true,
             messages: [
                 {
@@ -83,7 +85,7 @@ const app = new Vue ({
         },
         {
             name: 'Alessandro B.',
-            avatar: '_4',
+            avatar: './assets/img/avatar_4.jpg',
             visible: true,
             messages: [
                 {
@@ -100,7 +102,7 @@ const app = new Vue ({
         },
         {
             name: 'Alessandro L.',
-            avatar: '_5',
+            avatar: './assets/img/avatar_5.jpg',
             visible: true,
             messages: [
                 {
@@ -117,7 +119,7 @@ const app = new Vue ({
         },
         {
             name: 'Claudia',
-            avatar: '_6',
+            avatar: './assets/img/avatar_6.jpg',
             visible: true,
             messages: [
                 {
@@ -139,7 +141,7 @@ const app = new Vue ({
         },
         {
             name: 'Federico',
-            avatar: '_7',
+            avatar: './assets/img/avatar_7.jpg',
             visible: true,
             messages: [
                 {
@@ -156,7 +158,7 @@ const app = new Vue ({
         },
         {
             name: 'Davide',
-            avatar: '_8',
+            avatar: './assets/img/avatar_8.jpg',
             visible: true,
             messages: [
                 {
@@ -180,6 +182,10 @@ const app = new Vue ({
    },
 
    methods: {
+       changeChat(index) {
+        // console.log('change chat');
+        this.activeUser = index;
+       }
 
    },
 })

@@ -230,3 +230,7 @@ img {
  .sent_messages .message_box {
    background-color: var(--message-box-green)
 }
+
+.active {
+    background-color: lightgray;
+}
