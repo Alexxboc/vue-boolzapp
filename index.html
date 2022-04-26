@@ -97,7 +97,7 @@
                        <header id="app_main_header">
                         <div class="current_user">
                             <div class="current_user_img">
-                                <img src="./assets/img/avatar_3.jpg" alt="">
+                                <img :src="contacts[activeUser].avatar" alt="">
                             </div>
                             <!-- /.current_user_img -->
                             <div class="current_user_details">
@@ -114,8 +114,8 @@
                         </div>
                         <!-- /.current_user -->
                         <div class="message_icons">
-                            <i class="fa-solid fa-circle-notch"></i>
-                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                            <!-- /.message_icons -->
@@ -132,7 +132,7 @@
 
                        <footer id="app_main_footer">
                            <div class="left_icon">
-                            <i class="fa-solid fa-message"></i>
+                                <i class="fa-solid fa-face-smile"></i>
                            </div>
                            <!-- /.left_icon -->
                            <div class="type_message_area">
@@ -140,7 +140,7 @@
                            </div>
                            <!-- /.type_message_area -->
                            <div class="right_icon">
-                            <i class="fa-solid fa-message"></i>
+                                <i class="fa-solid fa-microphone"></i>
                            </div>
                            <!-- /.right_icon -->
                        </footer>
