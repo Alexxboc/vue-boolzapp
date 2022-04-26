@@ -1,0 +1,49 @@
+/* Variables */
+:root {
+    --text-dark: #000000;
+    --text-light-gray: #B6B9BE;
+    --header-bg: #009688;
+    --body-bg: #DADBD5;
+    --icons-gray: #B1B1B1;
+    --header-app-bg: #EAEAEA;
+    --footer-app-bg: #F3EEEA;
+
+}
+
+/* Common rules */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.site_wrapper {
+    height: 100vh;
+    position: relative;
+}
+
+#site_header {
+    height: 150px;
+    background-color: var(--header-bg);
+}
+
+#site_main {
+    height: calc(100% - 150px);
+    background-color: var(--body-bg);
+}
+
+.app_wrapper {
+    height: 95vh;
+    width: 1440px;
+    background-color: aqua;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
