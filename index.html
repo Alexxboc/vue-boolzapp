@@ -63,7 +63,7 @@
                         <input type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
                     <!-- /.search -->
-                    <main id="aside_main">
+                    <div id="aside_main">
                         <div class="user_wrapper" v-for="(contact, index) in contacts" @click="changeChat(index)" :class="activeUser === index ? 'active' : ''">
                             <div class="user">
                                 <div class="user_img">
@@ -89,11 +89,11 @@
                         <!-- /.user_wrapper -->
 
           
-                    </main>
+                    </div>
                     <!-- /#aside_main -->
                    </aside>
                    <!-- /.all_chats -->
-                   <main id="app_main">
+                   <div id="app_main">
                        <header id="app_main_header">
                         <div class="current_user">
                             <div class="current_user_img">
@@ -123,14 +123,12 @@
                        <!-- /#app_main_header -->
 
                        <div class="chat_area">
-                            
-                                <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
+                             <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
                                    {{message.message}}
-                                </div>
-                                <!-- /.message_box -->
-                            
-                       </div>
-                       <!-- /.chat_area -->
+                            </div>
+                            <!-- /.message_box -->
+                        </div>
+                        <!-- /.chat_area -->
 
                        <footer id="app_main_footer">
                            <div class="left_icon">
@@ -146,7 +144,7 @@
                            </div>
                            <!-- /.right_icon -->
                        </footer>
-                   </main>
+                   </div>
                    <!-- /#app_main -->
                   
                    

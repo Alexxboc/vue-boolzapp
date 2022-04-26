@@ -121,7 +121,7 @@ img {
     background-color: white;
     padding: 0.75rem;
     border-radius: 50%;
-    color: var(--icons-gray);
+    color: var(--new-messages-bg)
 }
 
 #app_aside .search {
@@ -172,7 +172,8 @@ img {
 }
 
 #app_main .chat_area {
-    height: calc(100% - 168px)
+    max-height: calc(100% - 168px);
+    overflow: auto;
 }
 
 #app_main_footer {
