@@ -20,9 +20,9 @@ un “ok” come risposta, che apparirà dopo 1 secondo
 const app = new Vue ({
    el: '#app',
    data: {
-    activeUser: 0,
+    activeUser: 0, //Dichiaro un contatore per l'indice
 
-    newMessage:'',
+    newMessage:'', // Definisco una nuova proprietà legata attraverso il v-model all'input per inviare i messaggi
 
     contacts: [
         {
@@ -192,16 +192,16 @@ const app = new Vue ({
    methods: {
        changeChat(index) {
         // console.log('change chat');
-        this.activeUser = index;
+        this.activeUser = index; //Attribuisco all'indice il valore activeUser
        },
 
        sendMessage(index) {
-           console.log('message sent');
+        //    console.log('message sent');
            if(this.newMessage) {
-               this.contacts[index].messages.push({date: '', message: this.newMessage, status: 'sent'});
-               this.newMessage = ''
+               this.contacts[index].messages.push({date: '', message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
+               this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
                setTimeout(() => {
-                this.contacts[index].messages.push({date: '', message: 'ok', status: 'received'})
+                this.contacts[index].messages.push({date: '', message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
                }, 1000);
             
            }
