@@ -136,7 +136,7 @@
                            </div>
                            <!-- /.left_icon -->
                            <div class="type_message_area">
-                               <input type="text" placeholder="Scrivi un messaggio">
+                               <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage(activeUser)">
                            </div>
                            <!-- /.type_message_area -->
                            <div class="right_icon">
