@@ -15,6 +15,10 @@ Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitan
 “enter” il testo viene aggiunto al thread sopra, come messaggio verde
  Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà
 un “ok” come risposta, che apparirà dopo 1 secondo
+
+Milestone 4
+Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti 
+il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 */
 
 const app = new Vue ({
@@ -24,6 +28,7 @@ const app = new Vue ({
 
     newMessage:'', // Definisco una nuova proprietà legata attraverso il v-model all'input per inviare i messaggi
 
+    search: '', // Definisco una nuova proprietà per il metodo di ricerca
     contacts: [
         {
             name: 'Michele',
@@ -208,4 +213,12 @@ const app = new Vue ({
        },
 
    },
+
+   computed: { //Creo una funzione che filtri i nomi dei contatti
+       filteredUser() {
+           return this.contacts.filter(contact => { //Filtro all'interno dell'array contacts
+               return contact.name.toLowerCase().includes(this.search.toLowerCase()) //Restituisco un nuovo array che mi permatta di filtrare i nomi sia scritti in maiuscolo che in minuscolo
+           })
+       }
+   }
 })

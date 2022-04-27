@@ -60,11 +60,11 @@
                     <!-- /.new_messages -->
                     <div class="search">
                         <a><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="search">
                     </div>
                     <!-- /.search -->
                     <div id="aside_main">
-                        <div class="user_wrapper" v-for="(contact, index) in contacts" @click="changeChat(index)" :class="activeUser === index ? 'active' : ''">
+                        <div class="user_wrapper" v-for="(contact, index) in filteredUser" @click="changeChat(index)" :class="activeUser === index ? 'active' : ''">
                             <div class="user">
                                 <div class="user_img">
                                     <img :src="contact.avatar" alt="">
