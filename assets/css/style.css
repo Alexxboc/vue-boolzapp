@@ -74,18 +74,7 @@ body {
 .site_wrapper {
     height: 100vh;
     position: relative;
-}
-
-/* Site Header, Sitew Main */
-
-#site_header {
-    height: 150px;
-    background-color: var(--header-bg);
-}
-
-#site_main {
-    height: calc(100% - 150px);
-    background-color: var(--body-bg);
+    background-image: linear-gradient(to bottom, var(--header-bg) 0px, var(--header-bg) 120px, var(--body-bg) 120px, var(--body-bg) 100%);
 }
 
 /* App */
@@ -311,3 +300,6 @@ body {
 #app_main_header small {
     color: var(--footer-icons);
 }
+
+
+

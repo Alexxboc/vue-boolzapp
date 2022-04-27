@@ -230,10 +230,10 @@ const app = new Vue ({
        sendMessage(index) {
         //    console.log('message sent');
            if(this.newMessage) {
-               this.contacts[index].messages.push({date: '', message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
+               this.contacts[index].messages.push({click: false, date: '', message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
                setTimeout(() => {
-                this.contacts[index].messages.push({date: '', message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
+                this.contacts[index].messages.push({cliack: false, date: '', message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
                }, 1000);
             
            }
@@ -241,10 +241,10 @@ const app = new Vue ({
 
        isClicked(index) {
         //console.log('click');
-       let clickValue = this.contacts[this.activeUser].messages[index]
+       const clickValue = this.contacts[this.activeUser].messages[index]
        //console.log(clickValue);
         clickValue.click !== true ? clickValue.click = true : clickValue.click = false
-        console.log(clickValue.click);
+        // console.log(clickValue.click);
        },
 
        deleteMessage(index) {
