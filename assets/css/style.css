@@ -236,6 +236,18 @@ body {
     border-radius: 0.5rem;
     padding: 1rem;
     position: relative;
+    cursor: pointer;
+}
+
+
+.chat_area .message_box::before {
+    content: "\f078";
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 12px;
+    color: var(--text-light-gray);
+
 }
 
 .chat_area .message_box::after {
@@ -247,6 +259,35 @@ body {
     color: var(--text-light-gray);
 }
 
+.message_box .sub_menu {
+    position: absolute;
+    bottom: -82px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+    background-color: white;
+    padding: 1.5rem;
+    box-shadow: -1px 0px 11px 3px #0707073d;
+    border-radius: 0.25rem;
+    display: none;
+}
+
+.d_block {
+    display: block !important;
+}
+
+.message_box .sub_menu ul {
+    list-style: none;
+}
+
+.message_box .sub_menu li:first-child {
+    margin-bottom: 1rem;
+}
+
+.message_box .sub_menu a {
+    text-decoration: none;
+    color: var(--footer-icons);
+}
 
 .inbox_message {
     background-color: white;

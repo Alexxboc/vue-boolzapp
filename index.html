@@ -123,8 +123,22 @@
                        <!-- /#app_main_header -->
 
                        <div class="chat_area">
-                             <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
-                                   {{message.message}}
+                             <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'" @click="isClicked(index)">
+                                   <span>{{message.message}}</span>
+                                   <div class="sub_menu" :class="message.click === true ? 'd_block' : '' ">
+                                       <ul>
+                                           <li class="list_item">
+                                               <a href="#">Message info</a>
+                                           </li>
+                                           <!-- /.list_item -->
+                                           <li class="list_item" @click="deleteMessage(index)">
+                                              <a href="#">Delete message</a> 
+                                            </li>
+                                            <!-- /.list_item -->
+
+                                       </ul>
+                                   </div>
+                                   <!-- /.sub_menu -->
                             </div>
                             <!-- /.message_box -->
                         </div>
