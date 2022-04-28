@@ -152,7 +152,8 @@
                            </div>
                            <!-- /.type_message_area -->
                            <div class="right_icon">
-                                <i class="fa-solid fa-microphone"></i>
+                                <i v-if="newMessage.length === 0" class="fa-solid fa-microphone"></i>
+                                <i v-else class="fa-solid fa-paper-plane" @click="sendMessage"></i>
                            </div>
                            <!-- /.right_icon -->
                        </footer>

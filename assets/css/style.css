@@ -293,9 +293,14 @@ body {
     font-size: 25px;
 }
 
+#app_main_footer .right_icon:last-child i {
+    cursor: pointer;
+}
+
 #app_main_header small {
     color: var(--footer-icons);
 }
+
 
 
 

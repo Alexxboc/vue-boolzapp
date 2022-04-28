@@ -24,6 +24,10 @@ Milestone 5
 Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
 Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
 
+Funzionalità
+evitare che l'utente possa inviare un messaggio vuoto o composto solamente da spazi
+A) cambiare icona in basso a destra (a fianco all'input per scrivere un nuovo messaggio) finché l'utente sta scrivendo: di default si visualizza l'icona del microfono, quando l'input non è vuoto si visualizza l'icona dell'aeroplano. Quando il messaggio è stato inviato e l'input si svuota, si torna a visualizzare il microfono. B) inviare quindi il messaggio anche cliccando sull'icona dell'aeroplano
+
 */
 
 
@@ -36,6 +40,14 @@ const app = new Vue ({
     newMessage:'', // Definisco una nuova proprietà legata attraverso il v-model all'input per inviare i messaggi
 
     search: '', // Definisco una nuova proprietà per il metodo di ricerca
+
+    autoReplyMessages: [
+        'Forza Juve',
+        'Che la forza sia con te',
+        'Ciao Ciao',
+        'Buonanotte',
+        'TVB'
+    ],
 
     contacts: [
         {
@@ -229,43 +241,54 @@ const app = new Vue ({
         this.activeUser = index; //Attribuisco all'indice il valore activeUser
        },
 
-       sendMessage() {
+       sendMessage(autoReplyMessages, pickRandomMessage) {
         //    console.log('message sent');
            if(this.newMessage) {
                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it') , message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
                setTimeout(() => {
-                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
+                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: pickRandomMessage(autoReplyMessages), status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
                }, 1000);
+
+            //    console.log(autoReplyMessages);
+
             
            }
        },
 
        isClicked(index) {
-        //console.log('click');
-       const clickValue = this.contacts[this.activeUser].messages[index]
-       //console.log(clickValue);
-       if(clickValue) {
-        clickValue.click === false ? clickValue.click = true : clickValue.click = false
-        // console.log(clickValue.click);
+            //console.log('click');
+            const clickValue = this.contacts[this.activeUser].messages[index]
+            //console.log(clickValue);
+            if(clickValue) {
+            clickValue.click === false ? clickValue.click = true : clickValue.click = false
+            // console.log(clickValue.click);
        }
        
        },
 
        deleteMessage(index) {
            this.contacts[this.activeUser].messages.splice(index, 1)
+       },
+
+       pickRandomMessage(array) {
+        const randomMessage = array[Math.floor(Math.random() * array.length)];
+
+        return randomMessage
+
        }
-
-
-
-   },
-
-   computed: { //Creo una funzione che filtri i nomi dei contatti
-       filteredUser() {
-           return this.contacts.filter(contact => { //Filtro all'interno dell'array contacts
-               return contact.name.toLowerCase().includes(this.search.toLowerCase()) //Restituisco un nuovo array che mi permatta di filtrare i nomi sia scritti in maiuscolo che in minuscolo
-           })
-       }
-   }
+    },
+ 
+    computed: { //Creo una funzione che filtri i nomi dei contatti
+        filteredUser() {
+            return this.contacts.filter(contact => { //Filtro all'interno dell'array contacts
+                return contact.name.toLowerCase().includes(this.search.toLowerCase()) //Restituisco un nuovo array che mi permatta di filtrare i nomi sia scritti in maiuscolo che in minuscolo
+            })
+        }
+    }
 })
+
+
+
+
 
