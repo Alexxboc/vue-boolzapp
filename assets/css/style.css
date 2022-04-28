@@ -244,15 +244,6 @@ body {
     color: var(--text-light-gray);
 }
 
-/* .chat_area .message_box::after {
-    content: "15:30";
-    position: absolute;
-    bottom: 3px;
-    right: 3px;
-    font-size: 10px;
-    color: var(--text-light-gray);
-} */
-
 .message_box .sub_menu {
     position: absolute;
     bottom: -82px;
