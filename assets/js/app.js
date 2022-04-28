@@ -41,7 +41,7 @@ const app = new Vue ({
 
     search: '', // Definisco una nuova proprietà per il metodo di ricerca
 
-    autoReplyMessages: [
+    autoReplyMessages: [  //Definisco un array di messaggi casuali
         'Forza Juve',
         'Che la forza sia con te',
         'Ciao Ciao',
@@ -241,13 +241,14 @@ const app = new Vue ({
         this.activeUser = index; //Attribuisco all'indice il valore activeUser
        },
 
-       sendMessage(autoReplyMessages, pickRandomMessage) {
+       sendMessage(autoReplyMessages,pickRandomMessage) {
         //    console.log('message sent');
+        console.log(this.autoReplyMessages);
            if(this.newMessage) {
                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it') , message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
                setTimeout(() => {
-                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: pickRandomMessage(autoReplyMessages), status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
+                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
                }, 1000);
 
             //    console.log(autoReplyMessages);
@@ -268,10 +269,11 @@ const app = new Vue ({
        },
 
        deleteMessage(index) {
-           this.contacts[this.activeUser].messages.splice(index, 1)
+           this.contacts[this.activeUser].messages.splice(index, 1) // Elimino dall'array il messaggio
        },
 
        pickRandomMessage(array) {
+        // Creo una funzione che selezioni un messaggio casuale dall'array di messaggi casuali
         const randomMessage = array[Math.floor(Math.random() * array.length)];
 
         return randomMessage
