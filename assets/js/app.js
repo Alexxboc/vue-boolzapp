@@ -26,6 +26,7 @@ Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
 
 */
 
+
 const app = new Vue ({
    el: '#app',
 
@@ -231,7 +232,7 @@ const app = new Vue ({
        sendMessage() {
         //    console.log('message sent');
            if(this.newMessage) {
-               this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
+               this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it') , message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
                setTimeout(() => {
                 this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
@@ -267,3 +268,4 @@ const app = new Vue ({
        }
    }
 })
+
