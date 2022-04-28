@@ -121,6 +121,7 @@
                              <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
                                    <span>{{message.message}}</span>
                                    <i class="fa-solid fa-chevron-down" aria-hidden="true" @click="isClicked(index)"></i>
+                                   <small>{{message.date}}</small>
                                    <div class="sub_menu" :class="message.click === true ? 'd_block' : '' ">
                                        <ul>
                                            <li class="list_item">
@@ -146,7 +147,7 @@
                            </div>
                            <!-- /.left_icon -->
                            <div class="type_message_area">
-                               <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage(activeUser)">
+                               <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage">
                            </div>
                            <!-- /.type_message_area -->
                            <div class="right_icon">

@@ -227,13 +227,13 @@ const app = new Vue ({
         this.activeUser = index; //Attribuisco all'indice il valore activeUser
        },
 
-       sendMessage(index) {
+       sendMessage() {
         //    console.log('message sent');
            if(this.newMessage) {
-               this.contacts[index].messages.push({click: false, date: '', message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
+               this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
                setTimeout(() => {
-                this.contacts[index].messages.push({click: false, date: '', message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
+                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: 'ok', status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
                }, 1000);
             
            }
@@ -243,8 +243,11 @@ const app = new Vue ({
         //console.log('click');
        const clickValue = this.contacts[this.activeUser].messages[index]
        //console.log(clickValue);
+       if(clickValue) {
         clickValue.click === false ? clickValue.click = true : clickValue.click = false
         // console.log(clickValue.click);
+       }
+       
        },
 
        deleteMessage(index) {
