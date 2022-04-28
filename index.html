@@ -102,9 +102,16 @@
                                      {{contacts[activeUser].name}}
                                 </div>
                                 <!-- /.current_user_name -->
-                                <small class="last_access">
+                                <small v-if="this.contacts[this.activeUser].isWriting === false" class="last_access">
                                     Ultimo accesso oggi alle {{contacts[activeUser].messages.at(-1).date.slice(10, 16)}}
                                 </small>
+                                <small v-else-if="this.contacts[this.activeUser].isWriting === true">
+                                    Sta scrivendo...
+                                </small>
+                                <small v-else="this.contacts[this.activeUser].isOnline === true ">
+                                    Online
+                                </small>
+                                
                             </div>
                             <!-- /.current_user_details -->
                         </div>

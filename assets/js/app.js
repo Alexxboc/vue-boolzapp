@@ -27,6 +27,11 @@ Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti
 Funzionalità
 evitare che l'utente possa inviare un messaggio vuoto o composto solamente da spazi
 A) cambiare icona in basso a destra (a fianco all'input per scrivere un nuovo messaggio) finché l'utente sta scrivendo: di default si visualizza l'icona del microfono, quando l'input non è vuoto si visualizza l'icona dell'aeroplano. Quando il messaggio è stato inviato e l'input si svuota, si torna a visualizzare il microfono. B) inviare quindi il messaggio anche cliccando sull'icona dell'aeroplano
+predisporre una lista di frasi e/o citazioni da utilizzare al posto della risposta "ok:" quando il pc risponde, anziché scrivere "ok", scegliere una frase random dalla lista e utilizzarla come testo del messaggio di risposta del pc
+visualizzare nella lista dei contatti l'ultimo messaggio inviato/ricevuto da ciascun contatto
+inserire l'orario corretto nei messaggi (v. note day.js)
+sotto al nome del contatto nella parte in alto a destra, cambiare l'indicazione dello stato: visualizzare il testo "sta scrivendo..." 
+nel timeout in cui il pc risponde, poi mantenere la scritta "online" per un paio di secondi e infine visualizzare "ultimo accesso alle xx:yy" con l'orario corretto
 
 */
 
@@ -35,6 +40,7 @@ const app = new Vue ({
    el: '#app',
 
    data: {
+
     activeUser: 0, //Dichiaro un contatore per l'indice
 
     newMessage:'', // Definisco una nuova proprietà legata attraverso il v-model all'input per inviare i messaggi
@@ -54,6 +60,7 @@ const app = new Vue ({
             name: 'Michele',
             avatar: '_1',
             visible: true,
+            isWriting: false,
             messages: [
                 {
                     date: '10/01/2020 15:30:55',
@@ -79,6 +86,8 @@ const app = new Vue ({
             name: 'Fabio',
             avatar: '_2',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '20/03/2020 16:30:00',
@@ -104,6 +113,8 @@ const app = new Vue ({
             name: 'Samuele',
             avatar: '_3',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '28/03/2020 10:10:40',
@@ -129,6 +140,8 @@ const app = new Vue ({
             name: 'Alessandro B.',
             avatar: '_4',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '10/01/2020 15:30:55',
@@ -148,6 +161,8 @@ const app = new Vue ({
             name: 'Alessandro L.',
             avatar: '_5',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '10/01/2020 15:30:55',
@@ -167,6 +182,8 @@ const app = new Vue ({
             name: 'Claudia',
             avatar: '_6',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '10/01/2020 15:30:55',
@@ -192,6 +209,8 @@ const app = new Vue ({
             name: 'Federico',
             avatar: '_7',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '10/01/2020 15:30:55',
@@ -211,6 +230,8 @@ const app = new Vue ({
             name: 'Davide',
             avatar: '_8',
             visible: true,
+            isWriting: false,
+            isOnline: false,
             messages: [
                 {
                     date: '10/01/2020 15:30:55',
@@ -241,17 +262,26 @@ const app = new Vue ({
         this.activeUser = index; //Attribuisco all'indice il valore activeUser
        },
 
-       sendMessage(autoReplyMessages,pickRandomMessage) {
-        //    console.log('message sent');
-        console.log(this.autoReplyMessages);
+       sendMessage() {
+            //console.log('message sent');
+            // console.log(this.autoReplyMessages);
            if(this.newMessage) {
                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it') , message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
+               this.contacts[this.activeUser].isWriting = true;
+               this.contacts[this.activeUser].isOnline = true; 
                setTimeout(() => {
-                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received'}) // Imposto un timer di un secondo che invii una risposta automatica
+                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received'}); // Imposto un timer di un secondo che invii una risposta automatica 
+                 
                }, 1000);
-
-            //    console.log(autoReplyMessages);
+               setTimeout(() => {
+                this.contacts[this.activeUser].isOnline = false
+                this.contacts[this.activeUser].isWriting = false
+                
+            }, 2000);
+               
+               
+               
 
             
            }
