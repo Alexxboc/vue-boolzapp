@@ -272,13 +272,14 @@ const app = new Vue ({
                this.contacts[this.activeUser].isOnline = true; 
                setTimeout(() => {
                 this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received'}); // Imposto un timer di un secondo che invii una risposta automatica 
-                 
+                this.contacts[this.activeUser].isWriting = false
                }, 1000);
                setTimeout(() => {
                 this.contacts[this.activeUser].isOnline = false
-                this.contacts[this.activeUser].isWriting = false
+
+            }, 4000);
                 
-            }, 2000);
+                
                
                
                
