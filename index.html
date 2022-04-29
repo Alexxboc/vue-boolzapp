@@ -70,7 +70,7 @@
                                         {{contact.name}}
                                     </div>
                                     <!-- /.user_name -->
-                                    <small class="last_message_info">
+                                    <small class="last_message_info" v-if="contacts[index].messages.length > 0">
                                         Ultimo messaggio inviato:<br>
                                         {{contact.messages.at(-1).message}}
                                     </small>
@@ -79,7 +79,7 @@
                                 <!-- /.user_details -->
                             </div>
                             <!-- /.user -->
-                            <small class="time">{{contact.messages.at(-1).date.slice(10, 16)}}</small>
+                            <small class="time" v-if="contacts[index].messages.length > 0">{{contact.messages.at(-1).date.slice(10, 16)}}</small>
                             <!-- /.time -->
                         </div>
                         <!-- /.user_wrapper -->

@@ -277,7 +277,7 @@ const app = new Vue ({
                setTimeout(() => {
                 this.contacts[this.activeUser].isOnline = false
 
-            }, 4000);
+            }, 3000);
                 
                 
                

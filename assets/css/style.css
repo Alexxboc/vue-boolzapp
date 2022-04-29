@@ -58,17 +58,14 @@ body {
 
 #aside_header .message_icons i, #app_main_header .message_icons i {
     margin-left: 0.75rem;
+    color: var(--icons-gray);
+    font-size: 22px;
 }
 
 #aside_main .user_wrapper small, #app_main_header small {
     color: var(--text-light-gray);
 }
 
-
-#aside_header .message_icons, #app_main_header .message_icons {
-    color: var(--icons-gray);
-    font-size: 22px;
-}
 /* Site Wrapper */
 
 .site_wrapper {
