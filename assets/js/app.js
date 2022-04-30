@@ -36,292 +36,294 @@ nel timeout in cui il pc risponde, poi mantenere la scritta "online" per un paio
 */
 
 
-const app = new Vue ({
-   el: '#app',
+const app = new Vue({
+    el: '#app',
 
-   data: {
+    data: {
 
-    activeUser: 0, //Dichiaro un contatore per l'indice
+        activeUser: 0, //Dichiaro un contatore per l'indice
 
-    newMessage:'', // Definisco una nuova proprietà legata attraverso il v-model all'input per inviare i messaggi
+        newMessage: '', // Definisco una nuova proprietà legata attraverso il v-model all'input per inviare i messaggi
 
-    search: '', // Definisco una nuova proprietà per il metodo di ricerca
+        search: '', // Definisco una nuova proprietà per il metodo di ricerca
 
-    autoReplyMessages: [  //Definisco un array di messaggi casuali
-        'Forza Juve',
-        'Che la forza sia con te',
-        'Ciao Ciao',
-        'Buonanotte',
-        'TVB'
-    ],
+        autoReplyMessages: [ //Definisco un array di messaggi casuali
+            'Forza Juve',
+            'Che la forza sia con te',
+            'Ciao Ciao',
+            'Buonanotte',
+            'TVB'
+        ],
 
-    contacts: [
-        {
-            name: 'Michele',
-            avatar: '_1',
-            visible: true,
-            isWriting: false,
-            messages: [
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: 'Hai portato a spasso il cane?',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:50:00',
-                    message: 'Ricordati di stendere i panni',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 16:15:22',
-                    message: 'Tutto fatto!',
-                    status: 'received',
-                    click: false
-                }
-            ],
+        contacts: [{
+                name: 'Michele',
+                avatar: '_1',
+                visible: true,
+                isWriting: false,
+                messages: [{
+                        date: '10/01/2020 15:30:55',
+                        message: 'Hai portato a spasso il cane?',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:50:00',
+                        message: 'Ricordati di stendere i panni',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 16:15:22',
+                        message: 'Tutto fatto!',
+                        status: 'received',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Fabio',
+                avatar: '_2',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '20/03/2020 16:30:00',
+                        message: 'Ciao come stai?',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '20/03/2020 16:30:55',
+                        message: 'Bene grazie! Stasera ci vediamo?',
+                        status: 'received',
+                        click: false
+                    },
+                    {
+                        date: '20/03/2020 16:35:00',
+                        message: 'Mi piacerebbe ma devo andare a fare la spesa.',
+                        status: 'sent',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Samuele',
+                avatar: '_3',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '28/03/2020 10:10:40',
+                        message: 'La Marianna va in campagna',
+                        status: 'received',
+                        click: false
+                    },
+                    {
+                        date: '28/03/2020 10:20:10',
+                        message: 'Sicuro di non aver sbagliato chat?',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '28/03/2020 16:15:22',
+                        message: 'Ah scusa!',
+                        status: 'received',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Alessandro B.',
+                avatar: '_4',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '10/01/2020 15:30:55',
+                        message: 'Lo sai che ha aperto una nuova pizzeria?',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:50:00',
+                        message: 'Si, ma preferirei andare al cinema',
+                        status: 'received',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Alessandro L.',
+                avatar: '_5',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '10/01/2020 15:30:55',
+                        message: 'Ricordati di chiamare la nonna',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:50:00',
+                        message: 'Va bene, stasera la sento',
+                        status: 'received',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Claudia',
+                avatar: '_6',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '10/01/2020 15:30:55',
+                        message: 'Ciao Claudia, hai novità?',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:50:00',
+                        message: 'Non ancora',
+                        status: 'received',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:51:00',
+                        message: 'Nessuna nuova, buona nuova',
+                        status: 'sent',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Federico',
+                avatar: '_7',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '10/01/2020 15:30:55',
+                        message: 'Fai gli auguri a Martina che è il suo compleanno!',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:50:00',
+                        message: 'Grazie per avermelo ricordato, le scrivo subito!',
+                        status: 'received',
+                        click: false
+                    }
+                ],
+            },
+            {
+                name: 'Davide',
+                avatar: '_8',
+                visible: true,
+                isWriting: false,
+                isOnline: false,
+                messages: [{
+                        date: '10/01/2020 15:30:55',
+                        message: 'Ciao, andiamo a mangiare la pizza stasera?',
+                        status: 'received',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:50:00',
+                        message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
+                        status: 'sent',
+                        click: false
+                    },
+                    {
+                        date: '10/01/2020 15:51:00',
+                        message: 'OK!!',
+                        status: 'received',
+                        click: false
+                    }
+                ],
+            }
+        ]
+    },
+
+    methods: {
+        changeChat(index) {
+            // console.log('change chat');
+            this.activeUser = index; //Attribuisco all'indice il valore activeUser
         },
-        {
-            name: 'Fabio',
-            avatar: '_2',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '20/03/2020 16:30:00',
-                    message: 'Ciao come stai?',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '20/03/2020 16:30:55',
-                    message: 'Bene grazie! Stasera ci vediamo?',
-                    status: 'received',
-                    click: false
-                },
-                {
-                    date: '20/03/2020 16:35:00',
-                    message: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                    status: 'sent',
-                    click: false
-                }
-            ],
-        },
-        {
-            name: 'Samuele',
-            avatar: '_3',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '28/03/2020 10:10:40',
-                    message: 'La Marianna va in campagna',
-                    status: 'received',
-                    click: false
-                },
-                {
-                    date: '28/03/2020 10:20:10',
-                    message: 'Sicuro di non aver sbagliato chat?',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '28/03/2020 16:15:22',
-                    message: 'Ah scusa!',
-                    status: 'received',
-                    click: false
-                }
-            ],
-        },
-        {
-            name: 'Alessandro B.',
-            avatar: '_4',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: 'Lo sai che ha aperto una nuova pizzeria?',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:50:00',
-                    message: 'Si, ma preferirei andare al cinema',
-                    status: 'received',
-                    click: false
-                }
-            ],
-        },
-        {
-            name: 'Alessandro L.',
-            avatar: '_5',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: 'Ricordati di chiamare la nonna',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:50:00',
-                    message: 'Va bene, stasera la sento',
-                    status: 'received',
-                    click: false
-                }
-            ],
-        },
-        {
-            name: 'Claudia',
-            avatar: '_6',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: 'Ciao Claudia, hai novità?',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:50:00',
-                    message: 'Non ancora',
-                    status: 'received',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:51:00',
-                    message: 'Nessuna nuova, buona nuova',
-                    status: 'sent',
-                    click: false
-                }
-            ],
-        },
-        {
-            name: 'Federico',
-            avatar: '_7',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: 'Fai gli auguri a Martina che è il suo compleanno!',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:50:00',
-                    message: 'Grazie per avermelo ricordato, le scrivo subito!',
-                    status: 'received',
-                    click: false
-                }
-            ],
-        },
-        {
-            name: 'Davide',
-            avatar: '_8',
-            visible: true,
-            isWriting: false,
-            isOnline: false,
-            messages: [
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: 'Ciao, andiamo a mangiare la pizza stasera?',
-                    status: 'received',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:50:00',
-                    message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                    status: 'sent',
-                    click: false
-                },
-                {
-                    date: '10/01/2020 15:51:00',
-                    message: 'OK!!',
-                    status: 'received',
-                    click: false
-                } 
-            ],
-        }
-    ]
-   },
 
-   methods: {
-       changeChat(index) {
-        // console.log('change chat');
-        this.activeUser = index; //Attribuisco all'indice il valore activeUser
-       },
-
-       sendMessage() {
+        sendMessage() {
             //console.log('message sent');
             // console.log(this.autoReplyMessages);
-           if(this.newMessage) {
-               this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it') , message: this.newMessage, status: 'sent'}); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
-               this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
-               this.contacts[this.activeUser].isWriting = true;
-               this.contacts[this.activeUser].isOnline = true; 
-               setTimeout(() => {
-                this.contacts[this.activeUser].messages.push({click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received'}); // Imposto un timer di un secondo che invii una risposta automatica 
-                this.contacts[this.activeUser].isWriting = false
-               }, 1000);
-               setTimeout(() => {
-                this.contacts[this.activeUser].isOnline = false
+            if (this.newMessage) {
+                this.contacts[this.activeUser].messages.push({ click: false, date: new Date().toLocaleString('it'), message: this.newMessage, status: 'sent' }); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
+                this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
+                this.contacts[this.activeUser].isWriting = true;
+                this.contacts[this.activeUser].isOnline = true;
+                setTimeout(() => {
+                    this.contacts[this.activeUser].messages.push({ click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received' }); // Imposto un timer di un secondo che invii una risposta automatica 
+                    this.contacts[this.activeUser].isWriting = false
+                }, 1000);
+                setTimeout(() => {
+                    this.contacts[this.activeUser].isOnline = false
 
-            }, 3000);
-                
-                
-               
-               
-               
+                }, 3000);
 
-            
-           }
-       },
 
-       isClicked(index) {
+
+
+
+
+
+            }
+        },
+
+        searchContact() { //Creo una funzione che filtri i contatti
+            const search = this.search.toLowerCase(); //Dichiaro una variabile per il testo scritto nell'input
+            // console.log(search);
+
+            const contacts = this.contacts //Definisco una variabile per l'array di contatti
+            contacts.forEach(contact => { //Ciclo all'interno dell'array
+                const name = contact.name.toLowerCase() //Definisco una varibile per il nome del singolo contatto
+                contact.visible = true //Imposto la proprietà visible su true per ogni singolo contatto
+
+                if (!name.includes(search)) { // Verifico se il nome del contatto contiene il testo scritto nell'input
+                    contact.visible = false // Imposto la proprietà visible su false se il testo scritto non contiene il nome
+                }
+
+            })
+        },
+
+        isClicked(index) {
             //console.log('click');
             const clickValue = this.contacts[this.activeUser].messages[index]
-            //console.log(clickValue);
-            if(clickValue) {
-            clickValue.click === false ? clickValue.click = true : clickValue.click = false
-            // console.log(clickValue.click);
-       }
-       
-       },
+                //console.log(clickValue);
+            if (clickValue) {
+                clickValue.click === false ? clickValue.click = true : clickValue.click = false
+                    // console.log(clickValue.click);
+            }
 
-       deleteMessage(index) {
-           this.contacts[this.activeUser].messages.splice(index, 1) // Elimino dall'array il messaggio
-       },
+        },
 
-       pickRandomMessage(array) {
-        // Creo una funzione che selezioni un messaggio casuale dall'array di messaggi casuali
-        const randomMessage = array[Math.floor(Math.random() * array.length)];
+        deleteMessage(index) {
+            this.contacts[this.activeUser].messages.splice(index, 1) // Elimino dall'array il messaggio
+        },
 
-        return randomMessage
+        pickRandomMessage(array) {
+            // Creo una funzione che selezioni un messaggio casuale dall'array di messaggi casuali
+            const randomMessage = array[Math.floor(Math.random() * array.length)];
 
-       }
-    },
- 
-    computed: { //Creo una funzione che filtri i nomi dei contatti
-        filteredUser() {
-            return this.contacts.filter(contact => { //Filtro all'interno dell'array contacts
-                return contact.name.toLowerCase().includes(this.search.toLowerCase()) //Restituisco un nuovo array che mi permatta di filtrare i nomi sia scritti in maiuscolo che in minuscolo
-            })
+            return randomMessage
+
         }
-    }
+    },
+
+    // computed: { //Creo una funzione che filtri i nomi dei contatti
+    //     filteredUser() {
+    //         return this.contacts.filter(contact => { //Filtro all'interno dell'array contacts
+    //             return contact.name.toLowerCase().includes(this.search.toLowerCase()) //Restituisco un nuovo array che mi permatta di filtrare i nomi sia scritti in maiuscolo che in minuscolo
+    //         })
+    //     }
+    // }
 })
-
-
-
-
-

@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fontawsome Libraries -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==' crossorigin='anonymous' referrerpolicy='no-referrer'
+    />
     <!-- Style.css link -->
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Vue Boolzapp</title>
 </head>
+
 <body>
-        <div id="app">
-           <div class="site_wrapper">
-               <div class="app_wrapper">
-                   <aside id="app_aside">
+    <div id="app">
+        <div class="site_wrapper">
+            <div class="app_wrapper">
+                <aside id="app_aside">
                     <header id="aside_header">
-                           <div class="current_user">
-                               <div class="current_user_details">
-                                   <img src="https://i1.sndcdn.com/avatars-000095044314-vdu01y-t240x240.jpg" alt="">
-                                   <div class="current_user_name">
-                                        Alexx
-                                   </div>
-                                   <!-- /.current_user_name -->
-                               </div>
-                               <!-- /.current_user_details -->
-                               <div class="message_icons">
+                        <div class="current_user">
+                            <div class="current_user_details">
+                                <img src="https://i1.sndcdn.com/avatars-000095044314-vdu01y-t240x240.jpg" alt="">
+                                <div class="current_user_name">
+                                    Alexx
+                                </div>
+                                <!-- /.current_user_name -->
+                            </div>
+                            <!-- /.current_user_details -->
+                            <div class="message_icons">
                                 <i class="fa-solid fa-circle-notch"></i>
                                 <i class="fa-solid fa-message"></i>
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
-                               </div>
-                               <!-- /.message_icons -->
-                           </div>
-                           <!-- /.current_user -->
+                            </div>
+                            <!-- /.message_icons -->
+                        </div>
+                        <!-- /.current_user -->
                     </header>
                     <!-- /#aside_header -->
                     <div class="new_messages">
@@ -55,11 +58,11 @@
                     <!-- /.new_messages -->
                     <div class="search">
                         <a><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="search">
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" @keyup="searchContact" v-model="search">
                     </div>
                     <!-- /.search -->
                     <div id="aside_main">
-                        <div class="user_wrapper" v-for="(contact, index) in filteredUser" @click="changeChat(index)" :class="activeUser === index ? 'active' : ''">
+                        <div class="user_wrapper" v-for="(contact, index) in contacts" @click="changeChat(index)" :class="activeUser === index ? 'active' : '' " v-show="contact.visible === true">
                             <div class="user">
                                 <div class="user_img">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg' " alt="">
@@ -84,22 +87,22 @@
                         </div>
                         <!-- /.user_wrapper -->
 
-          
+
                     </div>
                     <!-- /#aside_main -->
-                   </aside>
-                   <!-- /.all_chats -->
-                   <div id="app_main">
-                       <header id="app_main_header">
+                </aside>
+                <!-- /.all_chats -->
+                <div id="app_main">
+                    <header id="app_main_header">
                         <div class="current_user">
                             <div class="current_user_img">
                                 <img :src="'./assets/img/avatar' + contacts[activeUser].avatar + '.jpg'" alt="">
                             </div>
                             <!-- /.current_user_img -->
                             <div class="current_user_details">
-                                
+
                                 <div class="current_user_name">
-                                     {{contacts[activeUser].name}}
+                                    {{contacts[activeUser].name}}
                                 </div>
                                 <!-- /.current_user_name -->
                                 <template v-if="this.contacts[this.activeUser].isOnline">
@@ -113,9 +116,9 @@
                                 <small v-else-if="this.contacts[this.activeUser].messages.length >= 1" class="last_access">
                                     Ultimo accesso oggi alle {{contacts[activeUser].messages.at(-1).date.slice(10, 16)}}
                                 </small>
-                                
-                                
-                                
+
+
+
                             </div>
                             <!-- /.current_user_details -->
                         </div>
@@ -125,57 +128,57 @@
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
-                           <!-- /.message_icons -->
-                       </header>
-                       <!-- /#app_main_header -->
+                        <!-- /.message_icons -->
+                    </header>
+                    <!-- /#app_main_header -->
 
-                       <div class="chat_area">
-                             <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
-                                   <span>{{message.message}}</span>
-                                   <i class="fa-solid fa-chevron-down" aria-hidden="true" @click="isClicked(index)"></i>
-                                   <small>{{message.date}}</small>
-                                   <div class="sub_menu" :class="message.click === true ? 'd_block' : '' ">
-                                       <ul>
-                                           <li class="list_item">
-                                               <a href="#">Message info</a>
-                                           </li>
-                                           <!-- /.list_item -->
-                                           <li class="list_item">
-                                              <a href="#" @click="deleteMessage(index)">Delete message</a> 
-                                            </li>
-                                            <!-- /.list_item -->
+                    <div class="chat_area">
+                        <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
+                            <span>{{message.message}}</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true" @click="isClicked(index)"></i>
+                            <small>{{message.date}}</small>
+                            <div class="sub_menu" :class="message.click === true ? 'd_block' : '' ">
+                                <ul>
+                                    <li class="list_item">
+                                        <a href="#">Message info</a>
+                                    </li>
+                                    <!-- /.list_item -->
+                                    <li class="list_item">
+                                        <a href="#" @click="deleteMessage(index)">Delete message</a>
+                                    </li>
+                                    <!-- /.list_item -->
 
-                                       </ul>
-                                   </div>
-                                   <!-- /.sub_menu -->
+                                </ul>
                             </div>
-                            <!-- /.message_box -->
+                            <!-- /.sub_menu -->
                         </div>
-                        <!-- /.chat_area -->
+                        <!-- /.message_box -->
+                    </div>
+                    <!-- /.chat_area -->
 
-                       <footer id="app_main_footer">
-                           <div class="left_icon">
-                                <i class="fa-solid fa-face-smile"></i>
-                           </div>
-                           <!-- /.left_icon -->
-                           <div class="type_message_area">
-                               <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage">
-                           </div>
-                           <!-- /.type_message_area -->
-                           <div class="right_icon">
-                                <i v-if="newMessage.length === 0" class="fa-solid fa-microphone"></i>
-                                <i v-else class="fa-solid fa-paper-plane" @click="sendMessage"></i>
-                           </div>
-                           <!-- /.right_icon -->
-                       </footer>
-                   </div>
-                   <!-- /#app_main -->
+                    <footer id="app_main_footer">
+                        <div class="left_icon">
+                            <i class="fa-solid fa-face-smile"></i>
+                        </div>
+                        <!-- /.left_icon -->
+                        <div class="type_message_area">
+                            <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage">
+                        </div>
+                        <!-- /.type_message_area -->
+                        <div class="right_icon">
+                            <i v-if="newMessage.length === 0" class="fa-solid fa-microphone"></i>
+                            <i v-else class="fa-solid fa-paper-plane" @click="sendMessage"></i>
+                        </div>
+                        <!-- /.right_icon -->
+                    </footer>
                 </div>
-               <!-- /.app_wrapper -->
+                <!-- /#app_main -->
             </div>
-           <!-- /.site_wrapper -->
+            <!-- /.app_wrapper -->
         </div>
-        <!-- /#app -->
+        <!-- /.site_wrapper -->
+    </div>
+    <!-- /#app -->
     <!-- VueJs Libraries -->
     <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
     <!-- Day.js Libraries -->
@@ -183,4 +186,5 @@
     <!-- App.js link -->
     <script src="./assets/js/app.js"></script>
 </body>
+
 </html>
