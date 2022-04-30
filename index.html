@@ -75,14 +75,14 @@
                                     <!-- /.user_name -->
                                     <small class="last_message_info" v-if="contacts[index].messages.length > 0">
                                         Ultimo messaggio inviato:<br>
-                                        {{contact.messages.at(-1).message}}
+                                        {{contact.messages[contact.messages.length-1].message}}
                                     </small>
                                     <!-- /.last_message_info -->
                                 </div>
                                 <!-- /.user_details -->
                             </div>
                             <!-- /.user -->
-                            <small class="time" v-if="contacts[index].messages.length > 0">{{contact.messages.at(-1).date.slice(10, 16)}}</small>
+                            <small class="time" v-if="contacts[index].messages.length > 0">{{contact.messages[contact.messages.length-1].date.slice(10, 16)}}</small>
                             <!-- /.time -->
                         </div>
                         <!-- /.user_wrapper -->
@@ -114,7 +114,8 @@
                                     </small>
                                 </template>
                                 <small v-else-if="this.contacts[this.activeUser].messages.length >= 1" class="last_access">
-                                    Ultimo accesso oggi alle {{contacts[activeUser].messages.at(-1).date.slice(10, 16)}}
+                                    Ultimo accesso oggi alle {{contacts[activeUser].messages[contacts[activeUser].messages.length
+                                        -1].date.slice(10, 16)}}
                                 </small>
 
 
