@@ -255,18 +255,20 @@ const app = new Vue({
 
         sendMessage() {
             //console.log('message sent');
-            // console.log(this.autoReplyMessages);
-            if (this.newMessage) {
-                this.contacts[this.activeUser].messages.push({ click: false, date: new Date().toLocaleString('it'), message: this.newMessage, status: 'sent' }); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
+            const newText = this.newMessage.trim() // Definisco una variabile con il messaggio "trimmato"
+            const activeContact = this.contacts[this.activeUser] // Definisco una variabile per il contatto attivo
+
+            if (newText) {
+                activeContact.messages.push({ click: false, date: new Date().toLocaleString('it'), message: this.newMessage, status: 'sent' }); // "Pusho" nell'Array dei messagi un nuovo oggetto con il messaggio scritto dall'utente
                 this.newMessage = '' // Pulisco l'input dopo l'invio del messaggio
-                this.contacts[this.activeUser].isWriting = true;
-                this.contacts[this.activeUser].isOnline = true;
-                setTimeout(() => {
-                    this.contacts[this.activeUser].messages.push({ click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received' }); // Imposto un timer di un secondo che invii una risposta automatica 
-                    this.contacts[this.activeUser].isWriting = false
+                activeContact.isWriting = true; // Imposto la proprietà isWriting su true
+                activeContact.isOnline = true; // Imposto la proprietà isOnline su true
+                setTimeout(() => { // Imposto un time out di 1 secondo per il messaggio di risposta automatico
+                    activeContact.messages.push({ click: false, date: new Date().toLocaleString('it'), message: this.pickRandomMessage(this.autoReplyMessages), status: 'received' }); // Imposto un timer di un secondo che invii una risposta automatica 
+                    activeContact.isWriting = false // Imposto la proprietà isWriting su false
                 }, 1000);
-                setTimeout(() => {
-                    this.contacts[this.activeUser].isOnline = false
+                setTimeout(() => { // Imposto un timer di 3 secondi per cambiare lo stato dell'utente
+                    activeContact.isOnline = false // Imposto la proprietà isOnline su false
 
                 }, 3000);
 
@@ -304,6 +306,11 @@ const app = new Vue({
                     // console.log(clickValue.click);
             }
 
+        },
+
+        closeDropdown(index) {
+            const clickValue = this.contacts[this.activeUser].messages[index]
+            clickValue.click = false
         },
 
         deleteMessage(index) {

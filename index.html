@@ -113,7 +113,7 @@
                                         Online
                                     </small>
                                 </template>
-                                <small v-else-if="this.contacts[this.activeUser].messages.length >= 1" class="last_access">
+                                <small v-else-if="this.contacts[this.activeUser].messages.length > 0" class="last_access">
                                     Ultimo accesso oggi alle {{contacts[activeUser].messages[contacts[activeUser].messages.length
                                         -1].date.slice(10, 16)}}
                                 </small>
@@ -138,7 +138,7 @@
                             <span>{{message.message}}</span>
                             <i class="fa-solid fa-chevron-down" aria-hidden="true" @click="isClicked(index)"></i>
                             <small>{{message.date}}</small>
-                            <div class="sub_menu" :class="message.click === true ? 'd_block' : '' ">
+                            <div class="sub_menu" :class="message.click === true ? 'd_block' : '' " @mouseleave="closeDropdown(index)">
                                 <ul>
                                     <li class="list_item">
                                         <a href="#">Message info</a>
