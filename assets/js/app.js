@@ -33,6 +33,10 @@ inserire l'orario corretto nei messaggi (v. note day.js)
 sotto al nome del contatto nella parte in alto a destra, cambiare l'indicazione dello stato: visualizzare il testo "sta scrivendo..." 
 nel timeout in cui il pc risponde, poi mantenere la scritta "online" per un paio di secondi e infine visualizzare "ultimo accesso alle xx:yy" con l'orario corretto
 
+dare la possibilità all'utente di cancellare tutti i messaggi di un contatto o di cancellare l'intera chat con tutti i suoi dati: cliccando sull'icona 
+con i tre pallini in alto a destra, si apre un dropdown menu in cui sono presenti le voci "Elimina messaggi" ed "Elimina chat"; cliccando su di essi si cancellano rispettivamente 
+tutti i messaggi di quel contatto (quindi rimane la conversazione vuota) oppure l'intera chat comprensiva di tutti i dati del contatto oltre che tutti i suoi messaggi (quindi sparisce il contatto anche dalla lista di sinistra)
+
 */
 
 
@@ -315,6 +319,21 @@ const app = new Vue({
 
         deleteMessage(index) {
             this.contacts[this.activeUser].messages.splice(index, 1) // Elimino dall'array il messaggio
+        },
+
+        deleteContactMessages() {
+            console.log('delete all messages');
+            this.contacts[this.activeUser].messages.splice(0, this.contacts[this.activeUser].messages.length)
+        },
+
+        deleteContact() {
+            console.log('delete contact');
+            const contacts = this.contacts
+            console.log(contacts);
+            contacts.forEach(contact => {
+                console.log(contact);
+
+            })
         },
 
         pickRandomMessage(array) {
