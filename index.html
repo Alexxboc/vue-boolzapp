@@ -69,7 +69,11 @@
                     </div>
                     <!-- /.search -->
                     <div id="aside_main">
-                        <div class="user_wrapper" v-for="(contact, index) in contacts" @click="changeChat(index)" :class="activeUser === index ? 'active' : '' " v-show="contact.visible === true">
+                        <div class="add_contact" v-if="contacts.length === 0">
+                            Add new contact +
+                        </div>
+                        <!-- /.add_contact -->
+                        <div v-else class="user_wrapper" v-for="(contact, index) in contacts" @click="changeChat(index)" :class="activeUser === index ? 'active' : '' " v-show="contact.visible === true">
                             <div class="user">
                                 <div class="user_img">
                                     <img :src="'./assets/img/avatar' + contact.avatar + '.jpg' " alt="">
@@ -101,7 +105,7 @@
                 <!-- /.all_chats -->
                 <div id="app_main">
                     <header id="app_main_header">
-                        <div class="current_user">
+                        <div class="current_user" v-if="contacts.length > 0">
                             <div class="current_user_img">
                                 <img :src="'./assets/img/avatar' + contacts[activeUser].avatar + '.jpg'" alt="">
                             </div>
@@ -139,8 +143,9 @@
                         <!-- /.message_icons -->
                     </header>
                     <!-- /#app_main_header -->
-
-                    <div class="chat_area">
+                    <div class="chat_area empty" v-if="contacts.length === 0"></div>
+                    <!-- /.chat_area_empty -->
+                    <div class="chat_area" v-else>
                         <div class="message_box" v-for="(message, index) in contacts[activeUser].messages" :class="message.status === 'sent' ? 'sent_message' : 'inbox_message'">
                             <span>{{message.message}}</span>
                             <i class="fa-solid fa-chevron-down" aria-hidden="true" @click="isClicked(index)"></i>

@@ -328,12 +328,7 @@ const app = new Vue({
 
         deleteContact() {
             console.log('delete contact');
-            const contacts = this.contacts
-            console.log(contacts);
-            contacts.forEach(contact => {
-                console.log(contact);
-
-            })
+            this.contacts.splice(this.contacts[this.activeUser], 1)
         },
 
         pickRandomMessage(array) {
